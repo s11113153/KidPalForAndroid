@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<FrameLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:layout_marginTop="10dp"
-  android:layout_marginBottom="10dp">
+  android:background="@drawable/sv_lighting_choose">
 
-  <ImageButton
-    android:layout_marginLeft="10dp"
-    android:id="@+id/imageViewLightRed"
-    android:background="@drawable/bg_light_red"
+  <RelativeLayout
+    android:layout_marginTop="100dp"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-  <ImageButton
-    android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp"
-    android:id="@+id/imageViewLightWhite"
-    android:background="@drawable/bg_light_white"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_toRightOf="@+id/imageViewLightRed"/>
+               android:layout_height="wrap_content">
+    <ImageButton
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageViewLightRed"
+      android:background="@drawable/ic_light_red_off"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+    <ImageButton
+      android:layout_marginRight="10dp"
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageViewLightWhite"
+      android:background="@drawable/ic_light_white_off"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/imageViewLightRed"/>
 
-  <ImageButton
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:id="@+id/imageViewLightRedWhite"
-    android:background="@drawable/bg_light_red_white"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/imageViewLightRed"/>
+    <ImageButton
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageViewLightRedWhite"
+      android:background="@drawable/ic_light_cycle_off"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/imageViewLightRed"/>
 
-  <ImageButton
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:id="@+id/imageViewLightOff"
-    android:background="@drawable/bg_light_off"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/imageViewLightWhite"
-    android:layout_toRightOf="@+id/imageViewLightRed"/>
+    <ImageButton
+      android:layout_marginRight="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageViewLightOff"
+      android:background="@drawable/ic_light_off"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/imageViewLightWhite"
+      android:layout_toRightOf="@+id/imageViewLightRed"/>
 
-</RelativeLayout>
+  </RelativeLayout>
+
+</FrameLayout>

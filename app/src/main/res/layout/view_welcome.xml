@@ -6,7 +6,7 @@
   tools:context=".MainActivity">
 
   <ImageView
-    android:background="@drawable/bg_welcome"
+    android:background="@drawable/bg_master_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 

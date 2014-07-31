@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context="tw.com.mobilogics.kidpal.DeleteDialog"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:background="@drawable/sv_delete_message">
+
+  <LinearLayout
+    android:layout_gravity="center_horizontal|bottom"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <ImageButton
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageButtonYes"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:background="@drawable/ic_delete_yes"/>
+    <ImageButton
+      android:layout_marginLeft="10dp"
+      android:id="@+id/imageButtonNo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:background="@drawable/ic_delete_no"/>
+
+    </LinearLayout>
+
+</FrameLayout>

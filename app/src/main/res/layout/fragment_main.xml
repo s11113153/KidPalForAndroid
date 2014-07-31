@@ -6,7 +6,8 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="tw.com.mobilogics.testhellohandy.MainActivity">
+  tools:context="tw.com.mobilogics.kidpal.MainActivity"
+  android:background="@drawable/bg_page">
   <ListView
     android:id="@+id/listView"
     android:layout_width="match_parent"

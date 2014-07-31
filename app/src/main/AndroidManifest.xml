@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="tw.com.mobilogics.testhellohandy" >
+          package="tw.com.mobilogics.kidpal" >
 
   <!--OPenGL ES 2.0 -->
   <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
@@ -45,21 +45,23 @@
       </intent-filter>
     </activity>
     <activity android:name=".MainActivity"
-              android:screenOrientation="portrait"
-              android:theme="@android:style/Theme.NoTitleBar"/>
+              android:screenOrientation="portrait"/>
 
     <activity android:name=".HelpDialog"
               android:theme="@android:style/Theme.Dialog"
               android:screenOrientation="portrait"/>
     <activity android:name=".LightingChooseDialog"
-              android:theme="@android:style/Theme.Dialog"
+              android:theme="@style/dialog"
               android:screenOrientation="portrait"/>
     <activity android:name=".ScanDeviceDialog"
-              android:theme="@style/ScanDeviceDialog"
+              android:theme="@style/dialog"
               android:screenOrientation="portrait"/>
     <activity android:name=".PersonInfoActivity"
+              android:theme="@android:style/Theme.NoTitleBar"
               android:screenOrientation="portrait"/>
-
+    <activity android:name=".DeleteDialog"
+              android:theme="@style/dialog"
+              android:screenOrientation="portrait"/>
     <!--Serive-->
     <service android:name=".ServiceBLE"
              android:enabled="true"

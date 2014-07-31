@@ -15,19 +15,19 @@
     <ImageView
       android:layout_gravity="left"
       android:id="@+id/imageViewLeft"
-      android:layout_width="100dp"
-      android:layout_height="100dp"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
     <TextView
       android:layout_marginTop="50dp"
       android:layout_gravity="center_horizontal"
-      android:id="@+id/textViewName"
+      android:id="@+id/editTextName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
     <ImageView
       android:layout_gravity="right"
       android:id="@+id/imageViewRight"
-      android:layout_width="100dp"
-      android:layout_height="100dp"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
   </FrameLayout>
 
 </LinearLayout>
