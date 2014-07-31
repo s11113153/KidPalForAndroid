@@ -306,6 +306,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
               Toast.makeText(MainActivity.this,"light",Toast.LENGTH_LONG).show();
+              startActivity(new Intent(MainActivity.this, LightingChooseDialog.class));
             }
           });
         }

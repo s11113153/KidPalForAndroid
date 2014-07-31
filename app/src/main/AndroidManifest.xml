@@ -44,7 +44,12 @@
       </intent-filter>
     </activity>
     <activity android:name=".HelpDialog"
-              android:theme="@android:style/Theme.Dialog"/>
+              android:theme="@android:style/Theme.Dialog"
+              android:screenOrientation="portrait"/>
+    <activity android:name=".LightingChooseDialog"
+              android:theme="@android:style/Theme.Dialog"
+              android:screenOrientation="portrait"/>
+
 
 
     <!--Serive-->
