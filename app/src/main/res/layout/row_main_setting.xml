@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/linearlayout"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+
+  <FrameLayout
+    android:id="@+id/frameLayout"
+    android:layout_weight="1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+      android:layout_gravity="left"
+      android:id="@+id/imageViewLeft"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:background="@drawable/bg_main_pair_start"/>
+    <TextView
+      android:layout_marginTop="50dp"
+      android:layout_gravity="center_horizontal"
+      android:text="Enter You Name"
+      android:id="@+id/textViewName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+    <ImageView
+      android:layout_gravity="right"
+      android:id="@+id/imageViewRight"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:background="@drawable/bg_white_light"/>
+  </FrameLayout>
+
+</LinearLayout>
