@@ -49,7 +49,9 @@
     <activity android:name=".LightingChooseDialog"
               android:theme="@android:style/Theme.Dialog"
               android:screenOrientation="portrait"/>
-
+    <activity android:name=".ScanDeviceDialog"
+              android:theme="@style/ScanDeviceDialog"
+              android:screenOrientation="portrait"/>
 
 
     <!--Serive-->

@@ -67,8 +67,6 @@ public class MainActivity extends Activity {
 
   private static final DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
-  public static final int CURRENT_HAS_CHILD = 0;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -226,14 +224,15 @@ public class MainActivity extends Activity {
 
       @Override
       public int getCount() {
-        return key.length;
+        //return key.length;
+        return 4;
       }
 
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(R.layout.row_main_setting, null);
         // 配對
-        if (key.length == 4 && mServiceBLE.getMap() == null && position == CURRENT_HAS_CHILD) {
+        if (key.length == 4 && mServiceBLE.getMap() == null && position == 0) {
           ImageView imageViewLeft = (ImageView) convertView.findViewById(R.id.imageViewLeft);
           Drawable scan = getResources().getDrawable(R.drawable.bg_main_pair_start);
           imageViewLeft.getLayoutParams().height = getScreenHeight() / 4;
@@ -246,22 +245,24 @@ public class MainActivity extends Activity {
           imageViewLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              mServiceBLE.setHandler(mHandler);
-              mServiceBLE.scan();
+              if (mScanState == true) return;
               mScanState = true;
-              mHandler.postDelayed(new Runnable() {
+              ScanDeviceDialog.setServiceBLE(mServiceBLE);
+              ScanDeviceDialog.setHandler(mHandler);
+              startActivity(new Intent(MainActivity.this, ScanDeviceDialog.class));
+              new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                  mServiceBLE.stop();
                   mScanState = false;
                 }
-              }, 5000);
+              },3500);
             }
           });
+
         }
 
         // 幫助
-        if (key.length == 4 && mServiceBLE.getMap() == null && position == CURRENT_HAS_CHILD + 3) {
+        if (key.length == 4 && mServiceBLE.getMap() == null && position == 3) {
           ImageView imageViewLeft = (ImageView) convertView.findViewById(R.id.imageViewLeft);
           imageViewLeft.setBackground(null);
           Drawable help = getResources().getDrawable(R.drawable.bg_main_help);
@@ -274,14 +275,14 @@ public class MainActivity extends Activity {
           imageViewRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Toast.makeText(MainActivity.this, "help", Toast.LENGTH_LONG).show();
               startActivity(new Intent(MainActivity.this, HelpDialog.class));
             }
           });
         }
 
+        /*
         // 新增
-        if (key.length == 4 && mServiceBLE.getMap() == null && position == CURRENT_HAS_CHILD + 1 || position == CURRENT_HAS_CHILD + 2) {
+        if (key.length == 4 && mServiceBLE.getMap() == null && position ==  1 || position == 2) {
           ImageView imageViewLeft = (ImageView) convertView.findViewById(R.id.imageViewLeft);
           Drawable child = getResources().getDrawable(R.drawable.bg_new_child);
           imageViewLeft.getLayoutParams().height = getScreenHeight() / 4;
@@ -309,13 +310,95 @@ public class MainActivity extends Activity {
               startActivity(new Intent(MainActivity.this, LightingChooseDialog.class));
             }
           });
-        }
+        }*/
 
+        // 已經有找到小孩了
         if (mServiceBLE.getMap() != null) {
+          convertView = mInflater.inflate(R.layout.row_main_setting, null);
           ImageView imageViewLeft = (ImageView) convertView.findViewById(R.id.imageViewLeft);
           TextView textViewName = (TextView) convertView.findViewById(R.id.textViewName);
           ImageView imageViewRight = (ImageView) convertView.findViewById(R.id.imageViewRight);
 
+
+          int scanPosition = (mServiceBLE.getMap().size() >= 4) ? -1: mServiceBLE.getMap().size();
+
+          int helpPosition = (mServiceBLE.getMap().size() >= 3) ? -1 : 4;
+
+          // 新增小孩位置
+          if (position < mServiceBLE.getMap().size()
+                    && scanPosition != -1
+                    && helpPosition != -1
+                    && position != scanPosition
+                    && position != helpPosition - 1
+          ) {
+              Drawable child = getResources().getDrawable(R.drawable.bg_new_child);
+              imageViewLeft.getLayoutParams().height = getScreenHeight() / 4;
+              imageViewLeft.setBackground(child);
+              Drawable light = getResources().getDrawable(R.drawable.bg_white_light);
+              imageViewRight.getLayoutParams().height = getScreenHeight() / 4;
+              imageViewRight.setBackground(light);
+              textViewName.setText("Enter you Name");
+
+              // 新增Child
+              imageViewLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  Toast.makeText(MainActivity.this,"child",Toast.LENGTH_LONG).show();
+                }
+              });
+
+              // 改變亮燈
+              imageViewRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  startActivity(new Intent(MainActivity.this, LightingChooseDialog.class));
+                }
+              });
+          }
+
+          // 掃描位置
+          if (scanPosition != -1 && position == scanPosition) {
+            Drawable scan = getResources().getDrawable(R.drawable.bg_main_pair_start);
+            imageViewLeft.getLayoutParams().height = getScreenHeight() / 4;
+            imageViewLeft.setBackground(scan);
+            imageViewRight.setBackground(null);
+            textViewName.setText("");
+
+            imageViewLeft.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                if (mScanState == true) return;
+                mScanState = true;
+                ScanDeviceDialog.setServiceBLE(mServiceBLE);
+                ScanDeviceDialog.setHandler(mHandler);
+                startActivity(new Intent(MainActivity.this, ScanDeviceDialog.class));
+                new Handler().postDelayed(new Runnable() {
+                  @Override
+                  public void run() {
+                    mScanState = false;
+                  }
+                },3500);
+              }
+            });
+          }
+
+          // 幫助位置
+          if (helpPosition != -1 && position == 3) {
+            imageViewLeft.setBackground(null);
+            Drawable help = getResources().getDrawable(R.drawable.bg_main_help);
+            imageViewRight.getLayoutParams().height = getScreenHeight() / 4;
+            imageViewRight.setBackground(help);
+            textViewName.setText("");
+            imageViewRight.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HelpDialog.class));
+              }
+            });
+          }
+
+
+/*
           KeyPal keyPal = mServiceBLE.getMap().get(key[position]);
           //name.setText(keyPal.name);
           // 如果有儲存相片的話
@@ -335,6 +418,7 @@ public class MainActivity extends Activity {
             final KeyPal tmpKeyPal = keyPal;
 
           }
+*/
         }
         return convertView;
       }

@@ -16,12 +16,10 @@
       android:layout_gravity="left"
       android:id="@+id/imageViewLeft"
       android:layout_width="100dp"
-      android:layout_height="100dp"
-      android:background="@drawable/bg_main_pair_start"/>
+      android:layout_height="100dp"/>
     <TextView
       android:layout_marginTop="50dp"
       android:layout_gravity="center_horizontal"
-      android:text="Enter You Name"
       android:id="@+id/textViewName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"/>
@@ -29,8 +27,7 @@
       android:layout_gravity="right"
       android:id="@+id/imageViewRight"
       android:layout_width="100dp"
-      android:layout_height="100dp"
-      android:background="@drawable/bg_white_light"/>
+      android:layout_height="100dp"/>
   </FrameLayout>
 
 </LinearLayout>
