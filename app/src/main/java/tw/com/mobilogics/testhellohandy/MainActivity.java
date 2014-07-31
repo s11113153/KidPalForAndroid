@@ -275,6 +275,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
               Toast.makeText(MainActivity.this, "help", Toast.LENGTH_LONG).show();
+              startActivity(new Intent(MainActivity.this, HelpDialog.class));
             }
           });
         }

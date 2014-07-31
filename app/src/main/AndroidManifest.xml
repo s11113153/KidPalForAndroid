@@ -43,6 +43,9 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:name=".HelpDialog"
+              android:theme="@android:style/Theme.Dialog"/>
+
 
     <!--Serive-->
     <service android:name=".ServiceBLE"
