@@ -51,12 +51,14 @@ public class MainActivity extends Activity {
 
   private final static Handler mHandler = new Handler();
 
+  private PlaceholderFragment mFragment = new PlaceholderFragment();
+
   private final ServiceConnection mConnect = new ServiceConnection() {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       mServiceBLE = ((ServiceBLE.MyBinder)service).getService();
       getFragmentManager().beginTransaction()
-        .replace(R.id.container, new PlaceholderFragment())
+        .replace(R.id.container, mFragment)
         .commit();
     }
     @Override
@@ -88,12 +90,12 @@ public class MainActivity extends Activity {
 
   @Override
   protected void onPause() {
+
     if (mServiceBLE != null) {
       if (mScanState) {
         mServiceBLE.stop();
         mScanState = false;
       }
-
       mServiceBLE.setHandler(null);
       unbindService(mConnect);
     }
@@ -337,13 +339,15 @@ public class MainActivity extends Activity {
               Drawable light = getResources().getDrawable(R.drawable.bg_white_light);
               imageViewRight.getLayoutParams().height = getScreenHeight() / 4;
               imageViewRight.setBackground(light);
-              textViewName.setText("Enter you Name");
+
+              KeyPal keyPal = mServiceBLE.getMap().get(key[position]);
+              textViewName.setText("" + keyPal.address);
 
               // 新增Child
               imageViewLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  Toast.makeText(MainActivity.this,"child",Toast.LENGTH_LONG).show();
+                  startActivity(new Intent(MainActivity.this, PersonInfoActivity.class));
                 }
               });
 

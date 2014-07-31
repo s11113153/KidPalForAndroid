@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <!--Default New Child Picture -->
+  <ImageButton
+    android:id="@+id/imageButtonChild"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:src="@drawable/bg_new_child"
+    android:layout_centerHorizontal="true"/>
+
+  <EditText
+    android:id="@+id/editTextName"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_below="@+id/imageButtonChild"
+    android:background="@drawable/bg_person_info_name"
+    android:layout_centerHorizontal="true"/>
+
+  <ImageView
+    android:id="@+id/imageViewBatteryPower"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:src="@drawable/bg_person_info_battery_power"
+    android:layout_below="@+id/editTextName"
+    android:layout_centerHorizontal="true"/>
+
+  <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/imageViewBatteryPower">
+    <ImageButton
+      android:id="@+id/imageButtonTakePicture"
+      android:layout_weight="1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:src="@drawable/bg_person_info_take_picture"/>
+    <ImageButton
+      android:id="@+id/imageButtonRadar"
+      android:layout_weight="1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:src="@drawable/bg_person_info_radar"
+      android:layout_toRightOf="@+id/imageViewTakePicture"/>
+  </LinearLayout>
+</RelativeLayout>

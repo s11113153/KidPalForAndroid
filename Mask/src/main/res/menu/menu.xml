@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="tw.com.mobilogics.module.Mask.CropPictureActivity" >
+  <item android:id="@+id/action_crop"
+        android:title="裁圖"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+  <item android:id="@+id/action_retake"
+        android:title="重新拍照"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>

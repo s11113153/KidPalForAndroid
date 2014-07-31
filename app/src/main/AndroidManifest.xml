@@ -35,14 +35,19 @@
 
     <!--Activity-->
     <activity
-      android:name=".MainActivity"
-      android:label="@string/app_name" >
+      android:name=".WelcomeActivity"
+      android:theme="@android:style/Theme.NoTitleBar"
+      android:label="@string/app_name"
+      android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:name=".MainActivity"
+              android:screenOrientation="portrait"
+              android:theme="@android:style/Theme.NoTitleBar"/>
+
     <activity android:name=".HelpDialog"
               android:theme="@android:style/Theme.Dialog"
               android:screenOrientation="portrait"/>
@@ -52,7 +57,8 @@
     <activity android:name=".ScanDeviceDialog"
               android:theme="@style/ScanDeviceDialog"
               android:screenOrientation="portrait"/>
-
+    <activity android:name=".PersonInfoActivity"
+              android:screenOrientation="portrait"/>
 
     <!--Serive-->
     <service android:name=".ServiceBLE"
