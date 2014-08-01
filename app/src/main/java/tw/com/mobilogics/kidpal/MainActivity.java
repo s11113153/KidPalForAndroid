@@ -5,13 +5,18 @@ import android.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.ComponentName;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -34,7 +39,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
+
+import tw.com.mobilogics.kidpal.model.DeviceDataBase;
 
 
 public class MainActivity extends Activity {
@@ -330,15 +338,49 @@ public class MainActivity extends Activity {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(keyPal.photo, 0, keyPal.photo.length);
                 Drawable drawable = new BitmapDrawable(getResources(), bitmap);
                 imageViewLeft.setBackground(drawable);
-              }
 
+                // 親子鍵狀態
+                final KeyPalDevice keyPalDevice = mServiceBLE.getDevicesMap().get(keyPal.address);
+
+                Paint paint = new Paint();
+                Paint alphaPaint = new Paint();
+                alphaPaint.setAlpha(150);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+                paint.setAntiAlias(true);
+
+                if (keyPalDevice != null) {
+                  switch (keyPalDevice.getConnectionState()) {
+                    case KeyPalDevice.STATE_CONNECTING : {
+                      Log.e("KeyPalDevice is connect", "ing");
+                    } break;
+                    case KeyPalDevice.STATE_CONNECTED : {
+                      Log.e("KeyPalDevice is connect", "con");
+                    } break;
+                    case KeyPalDevice.STATE_DISCONNECTED : {
+
+                      Log.e("KeyPalDevice is bye", "bye");
+                    } break;
+                  }
+                }else { // 為廉潔
+                  Bitmap lost = BitmapFactory.decodeResource(getResources(),R.drawable.ic_cover_lost)
+                      .copy(Bitmap.Config.ARGB_8888, true);
+                  Canvas canvas = new Canvas(lost);
+                  canvas.drawBitmap(lost, 0, 0, alphaPaint);
+                  canvas.drawBitmap(bitmap, 0, 0, paint);
+                  imageViewLeft.setImageBitmap(lost);
+                  Log.e("KeyPalDevice is null", "bye");
+                }
+
+
+              }
             // 新增Child
               imageViewLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                   PersonInfoActivity.setServiceBLEHandler(mHandler);
+                  PersonInfoActivity.setServiceBLE(mServiceBLE);
                   Intent intent = new Intent(MainActivity.this, PersonInfoActivity.class);
-                  intent.putExtra("mac",address);
+                  intent.putExtra("mac", address);
                   startActivity(intent);
                 }
               });
@@ -416,7 +458,6 @@ public class MainActivity extends Activity {
           }
 */
         }
-        Log.e("sc", "" + getScreenHeight());
         convertView.setMinimumHeight(getScreenHeight() / 4);
         //convertView.setMinimumHeight(259);
         return convertView;
@@ -432,7 +473,6 @@ public class MainActivity extends Activity {
       if (resourceId > 0) {
         result = getResources().getDimensionPixelSize(resourceId);
       }
-      Log.e("mx", "" + mDisplayMetrics.heightPixels);
       int screenHeight = mDisplayMetrics.heightPixels - result;
       return screenHeight;
     }

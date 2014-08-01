@@ -17,7 +17,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -27,18 +29,27 @@ import java.io.IOException;
 import java.util.TooManyListenersException;
 
 
-public class CropPictureActivity extends Activity {
+public class CropPictureActivity extends Activity implements View.OnClickListener {
   private final static String TAG = CropPictureActivity.class.getName();
   private static Bitmap mCropBitmap;
   private MaskView mMaskView;
 
+  private ImageButton mImageButtonRetake;
+
+  private ImageButton mImageButtonOk;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.activity_crop_picture);
     mMaskView = (MaskView) findViewById(R.id.mask_view);
-    setResult(RESULT_CANCELED);
+    mImageButtonOk = (ImageButton) findViewById(R.id.imageButtonOk);
+    mImageButtonRetake = (ImageButton) findViewById(R.id.imageButtonRetake);
+    mImageButtonOk.setOnClickListener(this);
+    mImageButtonRetake.setOnClickListener(this);
 
+    setResult(RESULT_CANCELED);
     try {
       // 將來源的的相片進行壓縮完之後再裁切圖片(利用遮罩)
       ContentResolver cr = this.getContentResolver();
@@ -69,6 +80,17 @@ public class CropPictureActivity extends Activity {
       e.printStackTrace();
     } catch (NullPointerException e) {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void onClick(View v) {
+    if (v.getId() == R.id.imageButtonOk) {
+      setCropBitmap();
+      finish();
+    }else if (v.getId() == R.id.imageButtonRetake) {
+      setResult(RESULT_FIRST_USER);
+      finish();
     }
   }
 
@@ -164,25 +186,6 @@ public class CropPictureActivity extends Activity {
     matrix.postScale(scaleWidth,scaleHeight);
     Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     return resizedBitmap;
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu, menu);
-    return super.onCreateOptionsMenu(menu);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.action_crop) {
-      setCropBitmap();
-      finish();
-    }else if (item.getItemId() == R.id.action_retake) {
-      setResult(RESULT_FIRST_USER);
-      finish();
-    }
-
-    return super.onOptionsItemSelected(item);
   }
 
   private void setCropBitmap() {

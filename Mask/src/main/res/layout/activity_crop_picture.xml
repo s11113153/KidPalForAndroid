@@ -1,18 +1,43 @@
-<FrameLayout
-  android:layout_height="match_parent"
-  android:layout_width="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-
-  <tw.com.mobilogics.module.Mask.MaskView
-    android:id="@+id/mask_view"
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  android:gravity="bottom">
+  <FrameLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#000000"/>
+    android:layout_height="wrap_content">
+    <tw.com.mobilogics.module.Mask.MaskView
+      android:id="@+id/mask_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="#000000"/>
+    <ImageView
+      android:id="@+id/img"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/ic_photo_cut"/>
+    <ImageButton
+      android:id="@+id/imageButtonRetake"
+      android:layout_gravity="left|bottom"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/ic_photo_retake"
+      android:layout_marginBottom="20dp"
+      android:layout_marginLeft="40dp"/>
+    <ImageButton
+      android:id="@+id/imageButtonOk"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/ic_photo_ok"
+      android:layout_marginBottom="20dp"
+      android:layout_marginRight="40dp"
+      android:layout_gravity="right|bottom"/>
+  </FrameLayout>
 
-  <ImageView
-    android:id="@+id/img"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/oval_05"/>
-</FrameLayout>
+
+  <!--android:background="@drawable/oval_05"-->
+</RelativeLayout>
+
+
+
 

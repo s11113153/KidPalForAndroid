@@ -6,12 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -61,6 +69,8 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
   private static Handler mServiceBLEHandler;
 
   private static Handler mDeleteHandler;
+
+  private static ServiceBLE mServiceBLE;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -122,18 +132,41 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
 
         case REQUEST_CROP : {
           Bitmap bitmap = tw.com.mobilogics.module.Mask.CropPictureActivity.getCropBitmap();
-          bitmap = Bitmap.createBitmap(bitmap,0,0,313,313);// 規定成尺寸大小
-          ByteArrayOutputStream stream = new ByteArrayOutputStream();
-          bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+          Matrix matrix = new Matrix();
+          //matrix.setScale(368.F / bitmap.getWidth(), 368.F / bitmap.getHeight());
+          bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);// 規定成尺寸大小
+
+          Log.e("bitmap w", "" + bitmap.getWidth());
+          Log.e("bitmap h", "" + bitmap.getHeight());
+
+
+          Bitmap childFrame = BitmapFactory.decodeResource(getResources(),R.drawable.ic_face_frame).copy(
+            Bitmap.Config.ARGB_8888, true);
+
+          Log.e("chlidFrame H :", "" + childFrame.getHeight());
+          Log.e("chlidFrame W :", "" + childFrame.getWidth());
+
+          Paint paint = new Paint();
+          paint.setFilterBitmap(true);
+          paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
+          Canvas canvas = new Canvas(childFrame);
+          canvas.drawBitmap(childFrame, 0, 0, paint);
+          canvas.drawBitmap(bitmap, 0, 0, paint);
 
           ContentValues contentValues = new ContentValues();
+          ByteArrayOutputStream stream = new ByteArrayOutputStream();
+          childFrame.compress(Bitmap.CompressFormat.JPEG, 100, stream);
           contentValues.put(DeviceDataBase.TITLE_PHOTO, stream.toByteArray());
           mDataBase.update(contentValues,address);
-          mImageButtonChild.setImageBitmap(bitmap);
+
+          mImageButtonChild.setBackground(new ColorDrawable(Color.TRANSPARENT));
+          mImageButtonChild.setScaleType(ImageView.ScaleType.FIT_XY);
+          mImageButtonChild.setImageBitmap(childFrame);
 
           //通知更新
           Message msg = Message.obtain(null, MainActivity.PlaceholderFragment.UPDATE_LIST);
           mServiceBLEHandler.sendMessage(msg);
+
         } break;
       }
     }else if (RESULT_FIRST_USER == resultCode) { // 重新拍照
@@ -164,13 +197,38 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
 
     if (address != null) {
       KeyPal keyPal = mDataBase.getKeyPal(address);
+      // 設定照片
       if (keyPal.photo != null && keyPal.photo.length > 0) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(keyPal.photo, 0, keyPal.photo.length);
         Drawable drawable = new BitmapDrawable(getResources(), bitmap);
        mImageButtonChild.setBackground(drawable);
       }
+      // 設定名稱
       if (keyPal.name != null) {
         mEditText.setText(keyPal.name);
+      }
+      // 設定電量
+      final KeyPalDevice keyPalDevice = mServiceBLE.getDevicesMap().get(keyPal.address);
+      if (keyPalDevice != null) {
+        int power = keyPalDevice.getBatteryValue();
+        Toast.makeText(PersonInfoActivity.this, "電量等級為1-4, 目前電量為" + power, Toast.LENGTH_LONG).show();
+
+        Drawable drawable = null;
+        switch (power) {
+          case 4 : {
+            drawable = getResources().getDrawable(R.drawable.ic_battery_3);
+          } break;
+          case 3 : {
+            drawable = getResources().getDrawable(R.drawable.ic_battery_2);
+          } break;
+          case 2 : {
+            drawable = getResources().getDrawable(R.drawable.ic_battery_1);
+          } break;
+          case 1 : {
+            drawable = getResources().getDrawable(R.drawable.ic_battery_0);
+          } break;
+        }
+        if (drawable != null) mImageViewBatteryPower.setBackground(drawable);
       }
     }
 
@@ -223,6 +281,12 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
     }
   }
 
+  public int dpToPx(int dp) {
+    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    return px;
+  }
+
   @Override
   public boolean onLongClick(View v) {
     if (v.getId() == R.id.imageButtonChild) {
@@ -236,6 +300,10 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
      // }
     }
     return false;
+  }
+
+  public static void setServiceBLE(ServiceBLE serviceBLE) {
+    mServiceBLE = serviceBLE;
   }
 
   public static void setServiceBLEHandler(Handler serviceBLEHandler) {
