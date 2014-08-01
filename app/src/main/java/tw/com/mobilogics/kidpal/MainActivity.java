@@ -165,6 +165,7 @@ public class MainActivity extends Activity {
             mListView.setAdapter(new ListOfAdapter(getActivity(), tw.com.mobilogics.kidpal.R.layout.row_device, key));
             ((ListOfAdapter) mListView.getAdapter()).notifyDataSetChanged();
           }catch (NullPointerException e) {
+            Log.e("PlaceholderFragment is null", ".......");
             e.printStackTrace();
             key = new String[4];
             mListView.setAdapter(new ListOfAdapter(getActivity(), tw.com.mobilogics.kidpal.R.layout.row_device, key));
@@ -349,6 +350,7 @@ public class MainActivity extends Activity {
                 paint.setAntiAlias(true);
 
                 if (keyPalDevice != null) {
+                  keyPalDevice.setHandler(mHandler);
                   switch (keyPalDevice.getConnectionState()) {
                     case KeyPalDevice.STATE_CONNECTING : {
                       Log.e("KeyPalDevice is connect", "ing");
@@ -357,11 +359,17 @@ public class MainActivity extends Activity {
                       Log.e("KeyPalDevice is connect", "con");
                     } break;
                     case KeyPalDevice.STATE_DISCONNECTED : {
-
+                      Bitmap lost = BitmapFactory.decodeResource(getResources(),R.drawable.ic_cover_lost)
+                        .copy(Bitmap.Config.ARGB_8888, true);
+                      Canvas canvas = new Canvas(lost);
+                      canvas.drawBitmap(lost, 0, 0, alphaPaint);
+                      canvas.drawBitmap(bitmap, 0, 0, paint);
+                      imageViewLeft.setImageBitmap(lost);
+                      Log.e("KeyPalDevice is null", "bye");
                       Log.e("KeyPalDevice is bye", "bye");
                     } break;
                   }
-                }else { // 為廉潔
+                }else { // 尚未連接
                   Bitmap lost = BitmapFactory.decodeResource(getResources(),R.drawable.ic_cover_lost)
                       .copy(Bitmap.Config.ARGB_8888, true);
                   Canvas canvas = new Canvas(lost);

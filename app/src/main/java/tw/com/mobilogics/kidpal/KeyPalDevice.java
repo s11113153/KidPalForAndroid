@@ -16,6 +16,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import java.util.UUID;
@@ -87,6 +89,8 @@ public class KeyPalDevice extends BluetoothGattCallback {
     return mConnectionState;
   }
 
+  private static Handler mHandler;
+
 
   public KeyPalDevice(Context context, KeyPalDeviceImp keyPalDeviceImp) {
     mContext = context;
@@ -138,11 +142,17 @@ public class KeyPalDevice extends BluetoothGattCallback {
         Log.i(TAG, "Attempting to start service discovery:"
           + gatt.discoverServices());
       } break;
-
       case BluetoothProfile.STATE_DISCONNECTED : {
-        mConnectionState = STATE_DISCONNECTED;
-        gatt.close();
-        mKeyPalDeviceImp.update(KeyPalDevice.this);
+        try {
+          mConnectionState = STATE_DISCONNECTED;
+          gatt.close();
+          mKeyPalDeviceImp.update(KeyPalDevice.this);
+        }catch(NullPointerException e) {
+          e.printStackTrace();
+        }finally {
+          Message msg = Message.obtain(null, MainActivity.PlaceholderFragment.UPDATE_LIST);
+          mHandler.sendMessage(msg);
+        }
       } break;
     }
   }
@@ -411,5 +421,9 @@ public class KeyPalDevice extends BluetoothGattCallback {
     }else{
       sendCommandWrite(LINK_LOSS_UUID,uuid,new byte[]{(byte)0x00});
     }
+  }
+
+  public void setHandler(Handler handler) {
+    mHandler = handler;
   }
 }

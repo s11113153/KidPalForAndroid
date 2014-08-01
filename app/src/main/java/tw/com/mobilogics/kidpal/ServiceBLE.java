@@ -219,6 +219,7 @@ public class ServiceBLE extends Service implements KeyPalDeviceImp {
     }
     if (mHandler == null) return;
     // notification update UI
+    Log.e(TAG, "ServiceBLE is update");
     Message msg = Message.obtain(null, MainActivity.PlaceholderFragment.UPDATE_LIST);
     mHandler.sendMessage(msg);
   }
