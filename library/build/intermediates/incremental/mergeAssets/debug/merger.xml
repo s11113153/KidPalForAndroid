@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/assets" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/debug/assets" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/debug/assets" />
     </dataSet>
 
 </merger>

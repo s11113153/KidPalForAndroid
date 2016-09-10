@@ -9,7 +9,7 @@ public class WelcomeActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(tw.com.mobilogics.kidpal.R.layout.view_welcome);
+    setContentView(R.layout.view_welcome);
 
     new Handler().postDelayed(new Runnable() {
       @Override

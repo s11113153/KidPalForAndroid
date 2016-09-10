@@ -104,7 +104,6 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
         }
       }
     };
-
   }
 
   @Override
@@ -113,7 +112,6 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
     if (RESULT_OK == resultCode) {
       switch (requestCode) {
         case REQUERT_PHOTO : {
-
           Intent cropIntent = new Intent(this, tw.com.mobilogics.module.Mask.CropPictureActivity.class);
           cropIntent.setData(intent.getData());
           startActivityForResult(cropIntent, REQUEST_CROP);
@@ -132,6 +130,15 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
 
         case REQUEST_CROP : {
           Bitmap bitmap = tw.com.mobilogics.module.Mask.CropPictureActivity.getCropBitmap();
+          Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+          mImageButtonChild.setBackground(drawable);
+          ContentValues contentValues = new ContentValues();
+          ByteArrayOutputStream stream = new ByteArrayOutputStream();
+          bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+          contentValues.put(DeviceDataBase.TITLE_PHOTO, stream.toByteArray());
+          mDataBase.update(contentValues,address);
+
+          /*
           Matrix matrix = new Matrix();
           //matrix.setScale(368.F / bitmap.getWidth(), 368.F / bitmap.getHeight());
           bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);// 規定成尺寸大小
@@ -162,7 +169,7 @@ public class PersonInfoActivity extends Activity implements View.OnClickListener
           mImageButtonChild.setBackground(new ColorDrawable(Color.TRANSPARENT));
           mImageButtonChild.setScaleType(ImageView.ScaleType.FIT_XY);
           mImageButtonChild.setImageBitmap(childFrame);
-
+*/
           //通知更新
           Message msg = Message.obtain(null, MainActivity.PlaceholderFragment.UPDATE_LIST);
           mServiceBLEHandler.sendMessage(msg);

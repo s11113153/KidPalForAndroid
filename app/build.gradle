@@ -5,7 +5,7 @@ android {
     buildToolsVersion '20.0.0'
 
     defaultConfig {
-        applicationId "tw.com.mobilogics.testhellohandy"
+        applicationId "tw.com.mobilogics.kidpal"
         minSdkVersion 18
         targetSdkVersion 20
         versionCode 1
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:5.0.77'
     compile project(':library')
     compile project(':Mask')
+    compile project(':imageFrameAnimationLibrary')
 }

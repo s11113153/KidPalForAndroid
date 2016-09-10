@@ -1,2 +1,3 @@
 include ':app', ':Mask'
 include ':library'
+include ':imageFrameAnimationLibrary'

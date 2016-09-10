@@ -21,15 +21,7 @@ public class HelpDialog extends Activity {
     super.onCreate(savedInstanceState);
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(tw.com.mobilogics.kidpal.R.layout.dialog_help);
-
-
-//    PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pagerTabStrip);
-
-
-
     final ArrayList<View> viewArrayList = new ArrayList<View>();
-
-
 //    LayoutInflater inflater = getLayoutInflater().from(this);
 //    viewArrayList.add(inflater.inflate(R.layout.activity_main, null));
 

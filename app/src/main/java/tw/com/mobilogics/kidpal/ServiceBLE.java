@@ -31,7 +31,7 @@ public class ServiceBLE extends Service implements KeyPalDeviceImp {
 
   private final static String TAG = ServiceBLE.class.getName();
 
-  private final IBinder mMyBinder = new MyBinder();
+  private IBinder mMyBinder = new MyBinder();
 
   private BluetoothManager mBluetoothManager = null;
   private BluetoothAdapter mBluetoothAdapter = null;
@@ -110,6 +110,7 @@ public class ServiceBLE extends Service implements KeyPalDeviceImp {
     mMap = getMap(); // ??
 
     return START_STICKY;
+    //return START_CONTINUATION_MASK;
   }
 
   @Override
@@ -194,6 +195,7 @@ public class ServiceBLE extends Service implements KeyPalDeviceImp {
     }
 
     update(keyPalDevice);
+
   }
 
 

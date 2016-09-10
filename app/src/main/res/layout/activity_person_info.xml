@@ -8,24 +8,39 @@
   android:focusable="true"
   tools:context="tw.com.mobilogics.kidpal.PersonInfoActivity"
   android:focusableInTouchMode="true"
-  android:background="@drawable/bg_page"
-  android:padding="10dp">
-
-  <!--Default New Child Picture -->
-  <ImageButton
-    android:layout_marginTop="15dp"
-    android:id="@+id/imageButtonChild"
+  android:background="@drawable/bg_page">
+  <RelativeLayout
+    android:layout_marginTop="5dp"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/relativeLayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/ic_face_non"
-    android:layout_centerHorizontal="true"/>
+    android:layout_height="wrap_content">
+    <FrameLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <ImageButton
+        android:background="@drawable/bg_page"
+        android:scaleType="fitCenter"
+        android:layout_width="368px"
+        android:layout_height="368px"
+        android:id="@+id/imageButtonChild"
+        android:layout_gravity="center"/>
+      <ImageView
+        android:src="@drawable/ic_face_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewFrame"
+        android:layout_gravity="center"/>
+    </FrameLayout>
+
+  </RelativeLayout>
 
   <EditText
     android:id="@+id/editText"
     android:layout_marginTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_below="@+id/imageButtonChild"
+    android:layout_below="@+id/relativeLayout"
     android:background="@drawable/ic_named_bar"
     android:layout_centerHorizontal="true"/>
 

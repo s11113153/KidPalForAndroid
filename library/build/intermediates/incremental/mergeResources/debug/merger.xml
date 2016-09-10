@@ -2,117 +2,117 @@
 <merger version="2" >
 
     <dataSet config="20.0.0" >
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/res" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/res" />
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res" >
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res" >
             <file
                 name="vpi__dark_theme"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/color/vpi__dark_theme.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/color/vpi__dark_theme.xml"
                 qualifiers=""
                 type="color" />
             <file
                 name="vpi__light_theme"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/color/vpi__light_theme.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/color/vpi__light_theme.xml"
                 qualifiers=""
                 type="color" />
             <file
                 name="vpi__tab_indicator"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable/vpi__tab_indicator.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable/vpi__tab_indicator.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="vpi__tab_selected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_selected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_selected_focused_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_selected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_selected_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_selected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_selected_pressed_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_unselected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_unselected_focused_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_unselected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_unselected_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-hdpi/vpi__tab_unselected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-hdpi/vpi__tab_unselected_pressed_holo.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_selected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_selected_focused_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_selected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_selected_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_selected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_selected_pressed_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_unselected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_unselected_focused_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_unselected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_unselected_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-mdpi/vpi__tab_unselected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-mdpi/vpi__tab_unselected_pressed_holo.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_selected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_selected_focused_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_selected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_selected_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_selected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_selected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_selected_pressed_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_focused_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_focused_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_focused_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="vpi__tab_unselected_pressed_holo"
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_pressed_holo.9.png"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/drawable-xhdpi/vpi__tab_unselected_pressed_holo.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/values/vpi__attrs.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/values/vpi__attrs.xml"
                 qualifiers="" >
                 <attr
                     name="centered"
@@ -299,7 +299,7 @@
                 </declare-styleable>
             </file>
             <file
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/values/vpi__colors.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/values/vpi__colors.xml"
                 qualifiers="" >
                 <color name="vpi__bright_foreground_holo_dark" >@color/vpi__background_holo_light
                 </color>
@@ -319,7 +319,7 @@
                 </color>
             </file>
             <file
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/values/vpi__defaults.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/values/vpi__defaults.xml"
                 qualifiers="" >
                 <dimen name="default_circle_indicator_radius" >3dp
                 </dimen>
@@ -419,7 +419,7 @@ true
                 </color>
             </file>
             <file
-                path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/main/res/values/vpi__styles.xml"
+                path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/main/res/values/vpi__styles.xml"
                 qualifiers="" >
 
                 <style
@@ -491,11 +491,11 @@ bold
                 </style>
             </file>
         </source>
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/build/generated/res/rs/debug" />
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/build/generated/res/generated/debug" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/build/generated/res/rs/debug" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/build/generated/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/xuyouren/AndroidStudioProjects/TestHelloHandy/library/src/debug/res" />
+        <source path="/Users/xuyouren/AndroidStudioProjects/KidPalForAndroid/library/src/debug/res" />
     </dataSet>
 
 </merger>

@@ -1,54 +1,67 @@
 package tw.com.mobilogics.kidpal;
 
+import com.imageframeanimation.AnimationSpeed;
+import com.imageframeanimation.AnimatorControl;
+import com.imageframeanimation.FrameImageAnimator;
+
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
-
-import java.io.ByteArrayOutputStream;
 
 
 public class ScanDeviceDialog extends Activity {
 
-  private static AnimationDrawable mAnimationDrawable;
+  public static int[] mImageToAnimate = new int[] {
+    R.drawable.ic_scan_flash1,
+    R.drawable.ic_scan_flash2,
+    R.drawable.ic_scan_flash3,
+    R.drawable.ic_scan_flash4,
+    R.drawable.ic_scan_flash5,
+    R.drawable.ic_scan_flash6,
+    R.drawable.ic_scan_flash7,
+    R.drawable.ic_scan_flash8,
+  };
+
+  private static FrameImageAnimator mAnimateImageView;
+  private static AnimatorControl mAnimatorControl;
+
   private static Handler mHandler;
   private static ServiceBLE mServiceBLE;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(tw.com.mobilogics.kidpal.R.layout.dialog_scan_device_dialog);
-    ImageView anim = (ImageView) findViewById(tw.com.mobilogics.kidpal.R.id.anim);
-    Drawable drawable = getResources().getDrawable(tw.com.mobilogics.kidpal.R.drawable.anim_scan_device_dialog);
-    //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.anim_scan_device_dialog);
-    //ByteArrayOutputStream stream = new ByteArrayOutputStream();
-    //bitmap.compress(Bitmap.CompressFormat.JPEG,10,stream);
-    anim.setAlpha(0.9F);
-    anim.setBackground(drawable);
-    //anim.setImageBitmap(bitmap);
-    mAnimationDrawable = (AnimationDrawable)anim.getBackground();
-    if (!mAnimationDrawable.isRunning()) {
-      mAnimationDrawable.start();
+    setContentView(R.layout.dialog_scan_device);
+    mAnimateImageView = (FrameImageAnimator) findViewById(R.id.animater_IV);
 
-      mServiceBLE.setHandler(mHandler);
-      mServiceBLE.scan();
-      mHandler.postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          mServiceBLE.stop();
-          if (mAnimationDrawable != null) {
-            mAnimationDrawable.stop();
-            mAnimationDrawable = null;
-          }
-          finish();
-        }
-      }, 3000);
-    }
+    mAnimatorControl = new AnimatorControl();
+
+    // Setting the Animation Speed (SLOW,MEDIUM or FAST)
+    final int mAnimationSpeed = AnimationSpeed.FAST;
+
+    // Applying the Images to Animate with the speed AnimationControl
+    mAnimatorControl.mApplyFrames(mImageToAnimate, ScanDeviceDialog.this,
+      mAnimateImageView, mAnimationSpeed);
+
+    // Starts The Animation
+    mAnimatorControl.start();
+
+    mServiceBLE.setHandler(mHandler);
+    mServiceBLE.scan();
+
+    mHandler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        mServiceBLE.stop();
+        finish();
+      }
+    }, 3000);
+
   }
 
   public static void setServiceBLE(ServiceBLE serviceBLE) {
@@ -60,8 +73,5 @@ public class ScanDeviceDialog extends Activity {
   }
 
   @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    return false;
-    //return super.onKeyDown(keyCode, event);
-  }
+  public boolean onKeyDown(int keyCode, KeyEvent event) { return false; }
 }
